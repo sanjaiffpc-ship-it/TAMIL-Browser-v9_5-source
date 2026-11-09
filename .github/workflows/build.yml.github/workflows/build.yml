@@ -1,0 +1,47 @@
+name: Build TAMIL APK
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.7' }
+      - name: Build APK
+        run: gradle assembleRelease --stacktrace
+      - name: Collect files
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/release/app-release.apk dist/TAMIL.apk
+          # keep the desktop Chrome extension in sync with the in-app engine
+          cp app/src/main/assets/tamil/engine.js chrome-extension/engine.js
+          (cd chrome-extension && zip -r ../dist/TAMIL-Chrome-Extension.zip . -x '*.DS_Store')
+      - uses: actions/upload-artifact@v4
+        with: { name: TAMIL-apk, path: dist/TAMIL.apk }
+      - uses: actions/upload-artifact@v4
+        with: { name: TAMIL-Chrome-Extension, path: dist/TAMIL-Chrome-Extension.zip }
+      - name: Publish rolling release (direct APK download, no zip)
+        if: github.ref_type == 'branch'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: TAMIL latest build
+          prerelease: true
+          files: |
+            dist/TAMIL.apk
+            dist/TAMIL-Chrome-Extension.zip
+      - name: Publish version release (tags only)
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/TAMIL.apk
+            dist/TAMIL-Chrome-Extension.zip
