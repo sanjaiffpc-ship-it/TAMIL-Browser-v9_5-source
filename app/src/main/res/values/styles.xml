@@ -1,0 +1,8 @@
+<resources>
+    <color name="tamil_bg">#07070A</color>
+    <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_main</item>
+        <item name="android:statusBarColor">#07070A</item>
+        <item name="android:navigationBarColor">#07070A</item>
+    </style>
+</resources>

@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><title>TAMIL – Audio settings</title><link rel="stylesheet" href="theme.css">
+<style>.wrap{max-width:640px;margin:0 auto}</style></head><body><div class="wrap">
+<div class="head"><img src="icons/icon128.png" alt=""><div><h1>TAMIL</h1><small>AUDIO TEST &amp; SETTINGS</small></div></div>
+<div class="card"><h2>1 · MICROPHONE ACCESS</h2>
+<p class="mono">Chrome only shows device names after you allow audio for this page. This does not give WhatsApp anything - it only lets this panel test your devices.</p>
+<button class="btn" id="grant">🎤 Allow microphone for this test page</button>
+<div class="row"><span>Status</span><span class="pill" id="st">not requested</span></div></div>
+<div class="card"><h2>2 · DEVICES</h2>
+<label>Microphone</label><select id="mic"></select>
+<label>Speaker (output)</label><select id="spk"></select>
+<label>Camera</label><select id="cam"></select></div>
+<div class="card"><h2>3 · MICROPHONE LEVEL</h2><div class="bar"><i id="lvl"></i></div>
+<div class="grid" style="margin-top:8px"><label><input type="checkbox" id="ec" checked> Echo cancellation</label><label><input type="checkbox" id="ns" checked> Noise suppression</label><label><input type="checkbox" id="agc"> Auto gain control</label></div>
+<button class="btn ghost" id="start">▶ Start level meter</button></div>
+<div class="card"><h2>4 · SPEAKER TEST</h2><button class="btn ghost" id="tone">🔊 Play test tone on selected speaker</button><div class="mono" id="spkmsg"></div></div>
+<div class="card"><h2>5 · DIAGNOSTICS</h2><div class="mono" id="diag"></div><button class="btn ghost" id="copy">📋 Copy report</button></div>
+<div class="card"><h2>SETTINGS</h2><button class="btn ghost" id="theme">🌓 Toggle dark / light theme</button>
+<button class="btn ghost" id="notif">🔔 Notification settings (Chrome)</button>
+<button class="btn ghost" id="cset">⚙ Chrome microphone settings</button></div>
+</div><script src="options.js"></script></body></html>

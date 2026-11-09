@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Tamil Sound Control Panel",
+  "version": "7.0",
+  "description": "Owner Tamil | Co-Owners Itachi Sasuke Speed, Sanju - call audio panel",
+  "browser_specific_settings": { "gecko": { "id": "tamil@oyr.community", "strict_min_version": "128.0" } },
+  "host_permissions": ["https://web.whatsapp.com/*", "https://discord.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*", "https://discord.com/*"],
+      "js": ["engine.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.tamil.voicehub'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.tamil.voicehub'
+        minSdk 26
+        targetSdk 34
+        versionCode 11
+        versionName '8.0-ultimate-premium'
+        ndk { abiFilters 'arm64-v8a' }
+    }
+    signingConfigs {
+        tamil {
+            storeFile rootProject.file('tamil.p12')
+            storeType 'pkcs12'
+            storePassword 'tamil123'
+            keyAlias 'tamil'
+            keyPassword 'tamil123'
+        }
+    }
+    buildTypes {
+        debug   { signingConfig signingConfigs.tamil }
+        release { signingConfig signingConfigs.tamil; minifyEnabled false }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+
+dependencies {
+    // Firefox engine (same one Firefox for Android uses). Highest version in this range is used.
+    implementation 'org.mozilla.geckoview:geckoview-arm64-v8a:[128.0,136.0)'
+}
